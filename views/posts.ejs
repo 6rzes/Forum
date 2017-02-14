@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<% include templates/header.ejs %>
+<br><br>
+currentUser: <%= currentUser %> || currentPage: <%= currentPage %>
+<br><br>
+<form id="FormId" action="/posts" method="GET">
+    User id:
+    <input type="text" name="userId" value="<%=currentUser%>">
+    <input type="submit" value="Show"> | Page:
+    <input type="submit" name="pagination" value="1">
+    <input type="submit" name="pagination" value="2">
+    <input type="submit" name="pagination" value="3">
+</form>
+
+</form>
+<ul>
+    <% if (posts) for(var i = 0; i < posts.length; i++) { %>
+    <li>
+        <h1>Post Title: <%= posts[i].post.title %></h1>
+        <h2>Post Body: <%= posts[i].post.body %></h2>
+        <% for(var j = 0; j < posts[i].comments.length; j++) { %>
+        <h4> Comment title: <%= posts[i].comments[j].name %> | <%= posts[i].comments[j].email %><br></h4>
+        <h5> Comment body: <%= posts[i].comments[j].body %> <br></h5>
+        <% } %>
+    </li>
+    <% } %>
+</ul>
+<br>
+
+
+</body>
+</html>

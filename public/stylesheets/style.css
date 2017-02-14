@@ -1,0 +1,18 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a:link {color: #7cff74;}    /* unvisited link */
+a:visited {color:#0B614B;} /* visited link */
+a:hover {color: #5c4eb4;}   /* mouse over link */
+
+h1 {color: #08282a
+}
+h2 {color: #4a95ff; margin-left: 15px;
+}
+h4 {color: #070a25; margin-left: 45px;
+}
+h5 {color: #5927ff; margin-left: 65px;
+}
+
