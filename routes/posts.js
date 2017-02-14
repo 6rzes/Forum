@@ -1,8 +1,5 @@
 var express = require('express');
 var router = express.Router();
-// var postsJSON = require('../posts.json');
-var postsJSON = require('../posts.json');
-var commentsJSON = require('../comments.json');
 var requestJSON = require('request');
 var urlPostsJSON = 'https://jsonplaceholder.typicode.com/posts/?userId=';
 var urlCommentsJSON = 'https://jsonplaceholder.typicode.com/comments/?postId=';
@@ -25,7 +22,6 @@ router.get('/', function (req, res, next) {
     var page = currentPage;
 
     function parseData() {
-        console.log("parse data");
         res.render('posts', {
             title: 'Posts',
             posts: results,
@@ -76,19 +72,14 @@ router.get('/', function (req, res, next) {
                 if (err) {
                     throw err;
                 }
-                console.log("page: " + page);
-                var resultsNo = json.length;
                 var start = (page - 1) * resultsPerPage;
                 var end = (page) * resultsPerPage;
                 if (end > json.length) {
                     end = json.length;
                 }
-                console.log("start: " + start);
-                console.log("end:   " + end);
-                return getCommentsForPosts(json.slice((page - 1) * resultsPerPage, (page) * resultsPerPage));
+                return getCommentsForPosts(json.slice(start, end));
             });
     }
-
     getPosts();
 });
 
