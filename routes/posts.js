@@ -8,7 +8,7 @@ var currentUser=1;
 var currentPage=1;
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
 
     if (req.query.userId) {
         currentUser=req.query.userId;
@@ -41,7 +41,7 @@ router.get('/', function (req, res, next) {
         }
 
         filteredPosts.forEach(function (post) {
-            var p = new Promise(function (resolve, reject) {
+            var p = new Promise(function (resolve) {
                 requestJSON(
                     {
                         url: urlCommentsJSON + post.id,
@@ -57,7 +57,7 @@ router.get('/', function (req, res, next) {
             promises.push(p);
         });
 
-        Promise.all(promises).then(function (details) {
+        Promise.all(promises).then(function () {
             parseData();
         });
     }
